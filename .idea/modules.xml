@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DSA - SHEET.iml" filepath="$PROJECT_DIR$/.idea/DSA - SHEET.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DSA - SHEET.iml" filepath="$PROJECT_DIR$/DSA - SHEET.iml" />
     </modules>
   </component>
 </project>
