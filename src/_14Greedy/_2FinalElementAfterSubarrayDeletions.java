@@ -20,7 +20,6 @@ public class _2FinalElementAfterSubarrayDeletions
         return Math.max(nums[0], nums[n - 1]);
     }
 
-    // For running in IntelliJ IDEA
     public static void main(String[] args)
     {
         _2FinalElementAfterSubarrayDeletions obj =
