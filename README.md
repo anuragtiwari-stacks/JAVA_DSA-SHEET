@@ -51,7 +51,7 @@ Each package contains clean Java implementations focused on concept clarity and 
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/anuragtiwari-codes/JAVA_DSA-SHEET.git
+   git clone https://github.com/anuragtiwari-stacks/JAVA_DSA-SHEET.git
    ```
 
 2. Open the project in any Java-supported IDE or editor.
