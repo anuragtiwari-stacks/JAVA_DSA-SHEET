@@ -47,7 +47,7 @@ public class _3PrimeNumberOfSetBitsInBinaryRepresentation
     }
 
     public static void main(String[] args)
-    {
+
         int left = 6;
         int right = 10;
 
