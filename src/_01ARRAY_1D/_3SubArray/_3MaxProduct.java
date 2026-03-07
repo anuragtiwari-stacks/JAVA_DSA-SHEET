@@ -42,3 +42,85 @@ public class _3MaxProduct
         System.out.println(maxProduct(nums4));
     }
 }
+
+/*
+Array:
+nums = {2, 3, -2, 4}
+
+Initial values
+
+maxProduct = 2
+minProduct = 2
+result = 2
+
+
+--------------------------------
+Step 1 (i = 1, current = 3)
+
+current < 0 ?
+No
+
+maxProduct = max(3 , 2 * 3)
+           = max(3 , 6)
+           = 6
+
+minProduct = min(3 , 2 * 3)
+           = min(3 , 6)
+           = 3
+
+result = max(2 , 6)
+       = 6
+
+
+--------------------------------
+Step 2 (i = 2, current = -2)
+
+current < 0 ?
+Yes → swap(maxProduct , minProduct)
+
+Before swap
+maxProduct = 6
+minProduct = 3
+
+After swap
+maxProduct = 3
+minProduct = 6
+
+
+maxProduct = max(-2 , 3 * -2)
+           = max(-2 , -6)
+           = -2
+
+minProduct = min(-2 , 6 * -2)
+           = min(-2 , -12)
+           = -12
+
+result = max(6 , -2)
+       = 6
+
+
+--------------------------------
+Step 3 (i = 3, current = 4)
+
+current < 0 ?
+No
+
+maxProduct = max(4 , -2 * 4)
+           = max(4 , -8)
+           = 4
+
+minProduct = min(4 , -12 * 4)
+           = min(4 , -48)
+           = -48
+
+result = max(6 , 4)
+       = 6
+
+
+--------------------------------
+Final Result
+
+Maximum Product Subarray = 6
+
+Subarray = {2, 3}
+*/

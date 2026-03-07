@@ -7,10 +7,6 @@ public class _2MaxSum
         int maxSum = arr[0];
         int currentSum = 0;
 
-        int start = 0;
-        int tempStart = 0;
-        int end = 0;
-
         for (int i = 0; i < arr.length; i++)
         {
             currentSum = currentSum + arr[i];
@@ -18,26 +14,13 @@ public class _2MaxSum
             if (currentSum > maxSum)
             {
                 maxSum = currentSum;
-                start = tempStart;
-                end = i;
             }
 
             if (currentSum < 0)
             {
                 currentSum = 0;
-                tempStart = i + 1;
             }
         }
-
-        System.out.println("Maximum Subarray Sum: " + maxSum);
-        System.out.print("Maximum Subarray: ");
-
-        for (int i = start; i <= end; i++)
-        {
-            System.out.print(arr[i] + " ");
-        }
-
-        System.out.println();
         return maxSum;
     }
 
@@ -49,8 +32,9 @@ public class _2MaxSum
         int[] nums2 = {1};
         int[] nums3 = {5, 4, -1, 7, 8};
 
-        sol.maxSubArray(nums1);
-        sol.maxSubArray(nums2);
-        sol.maxSubArray(nums3);
+        System.out.println(sol.maxSubArray(nums1));
+        System.out.println(sol.maxSubArray(nums2));
+        System.out.println(sol.maxSubArray(nums3));
     }
 }
+
