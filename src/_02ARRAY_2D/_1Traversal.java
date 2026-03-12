@@ -4,7 +4,6 @@ public class _1Traversal
 {
     public static void main(String[] args)
     {
-        // Declare and initialize a 2D array
         int[][] array = {{10, 20, 30}, {40, 50, 60}, {70, 80, 90}};
 
         System.out.println("Traversal using normal for loop:");
