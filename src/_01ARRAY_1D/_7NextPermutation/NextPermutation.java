@@ -14,100 +14,76 @@ larger rearrangement.
 */
 package _01ARRAY_1D._7NextPermutation;
 
-import java.util.Scanner;
-
 public class NextPermutation
 {
-
     public static void main(String[] args)
     {
-        Scanner sc = new Scanner(System.in);
-
-        // Ask the user for input size
-        System.out.print("Enter the number of elements in the array: ");
-        int n = sc.nextInt();
-
-        int[] nums = new int[n];
-
-        // Accept array input from the user
-        System.out.println("Enter " + n + " elements:");
-        for (int i = 0; i < n; i++)
-        {
-            nums[i] = sc.nextInt();
-        }
+        // Example input
+        int[] nums = {1, 2, 3};
 
         System.out.print("Original array: ");
         printArray(nums);
 
-        // Call method to compute next permutation
+        // Call method
         nextPermutation(nums);
 
         System.out.print("Next permutation: ");
         printArray(nums);
     }
 
-    // Method to compute the next lexicographical permutation
+    // Method to compute next permutation
     public static void nextPermutation(int[] arr)
     {
         int n = arr.length;
 
-        // Step 1: Find the first decreasing element from the end  -->last second
+        // Step 1: find first decreasing element from end
         int i = n - 2;
-
         while (i >= 0 && arr[i] >= arr[i + 1])
         {
             i--;
         }
 
-        // Step 2: If we found such an element, find the next bigger number from the right
+        // Step 2: find just greater element
         if (i >= 0)
         {
             int j = n - 1;
-
             while (arr[j] <= arr[i])
             {
                 j--;
             }
-
-            // Step 3: Swap the two numbers
             swap(arr, i, j);
         }
 
-        // Step 4: Reverse the numbers after index i to get the next permutation
+        // Step 3: reverse the right part
         reverse(arr, i + 1, n - 1);
     }
 
-    // Helper method to swap two elements in the array
-    private static void swap(int[] nums, int i, int j)
+    private static void swap(int[] arr, int i, int j)
     {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
-    // Helper method to reverse a subarray in place
-    private static void reverse(int[] nums, int start, int end)
+    private static void reverse(int[] arr, int start, int end)
     {
         while (start < end)
         {
-            swap(nums, start, end);
+            swap(arr, start, end);
             start++;
             end--;
         }
     }
 
-    // Method to print array elements without converting to string
     public static void printArray(int[] arr)
     {
-        for (int i = 0; i < arr.length; i++)
+        for (int num : arr)
         {
-            System.out.print(arr[i] + " ");
+            System.out.print(num + " ");
         }
         System.out.println();
     }
-
 }
-
 
 /*
 🔢 Steps to Find Next Permutation:
