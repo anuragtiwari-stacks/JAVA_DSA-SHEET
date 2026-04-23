@@ -64,11 +64,3 @@ public class MergeOverlapping
         mergeIntervals(arr);
     }
 }
-
-/*
-| i | Compare           | Overlap? | Action                  | index |
-| - | ----------------- | --------  | ----------------------- | ----- |
-| 1 | \[1,3] vs \[2,4]  | ✅ Yes    | Merge to \[1,4]         | 0     |
-| 2 | \[1,4] vs \[6,8]  | ❌ No     | Move \[6,8] to arr\[1]  | 1     |
-| 3 | \[6,8] vs \[9,10] | ❌ No     | Move \[9,10] to arr\[2] | 2     |
-*/
