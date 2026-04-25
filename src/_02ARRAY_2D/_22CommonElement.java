@@ -20,7 +20,14 @@ public class _22CommonElement
                 // Count only first time in each row to avoid duplicates
                 if (r == 0 || !map.containsKey(value) || map.get(value) == r)
                 {
-                    map.put(value, map.getOrDefault(value, 0) + 1);
+                    if (map.containsKey(value))
+                    {
+                        map.put(value, map.get(value) + 1);
+                    }
+                    else
+                    {
+                        map.put(value, 1);
+                    }
                 }
             }
         }
