@@ -31,11 +31,11 @@ public class _11UniqueCharacters
         // Build result string of characters with count == 1
         StringBuilder result = new StringBuilder();
 
-        for (Map.Entry<Character, Integer> entry : map.entrySet())
+        for (char key : map.keySet())
         {
-            if (entry.getValue() == 1)
+            if (map.get(key) == 1)
             {
-                result.append(entry.getKey());
+                System.out.println(key);
             }
         }
 

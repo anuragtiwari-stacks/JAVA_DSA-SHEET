@@ -15,8 +15,7 @@ public class _3FirstNonRepeatingString
 
             if (map.containsKey(word))
             {
-                int count = map.get(word);
-                map.put(word, count + 1);
+                map.put(word, map.get(word) + 1);
             }
             else
             {

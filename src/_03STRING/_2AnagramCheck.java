@@ -42,3 +42,28 @@ public class _2AnagramCheck
         System.out.println("Is \"" + s3 + "\" and \"" + s4 + "\" anagram? " + areAnagrams(s3, s4)); // false
     }
 }
+
+/*
+public boolean isAnagram(String s, String t)
+{
+    if (s.length() != t.length()) return false;
+
+    int[] freq = new int[26];
+
+    for (int i = 0; i < s.length(); i++)
+    {
+        freq[s.charAt(i) - 'a']++;
+        freq[t.charAt(i) - 'a']--;
+    }
+
+    for (int x : freq)
+    {
+        if (x != 0)
+        {
+           return false;
+        }
+    }
+
+    return true;
+}
+*/
