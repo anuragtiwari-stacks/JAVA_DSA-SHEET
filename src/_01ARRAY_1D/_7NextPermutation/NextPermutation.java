@@ -1,4 +1,4 @@
-/*
+package _01ARRAY_1D._7NextPermutation;/*
 A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
 
 For example, for arr = [1,2,3], the following are all the permutations of arr:
@@ -12,50 +12,53 @@ Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
 While the next permutation of arr = [3,2,1] is [1,2,3] because [3,2,1] does not have a lexicographical
 larger rearrangement.
 */
-package _01ARRAY_1D._7NextPermutation;
+import java.util.*;
 
 public class NextPermutation
 {
     public static void main(String[] args)
     {
-        // Example input
         int[] nums = {1, 2, 3};
 
         System.out.print("Original array: ");
         printArray(nums);
 
-        // Call method
         nextPermutation(nums);
 
         System.out.print("Next permutation: ");
         printArray(nums);
     }
 
-    // Method to compute next permutation
-    public static void nextPermutation(int[] arr)
+    public static void nextPermutation(int[] nums)
     {
-        int n = arr.length;
+        int n = nums.length;
 
-        // Step 1: find first decreasing element from end
-        int i = n - 2;
-        while (i >= 0 && arr[i] >= arr[i + 1])
+        // 🔹 Step 1: Find pivot using for loop
+        int i;
+        for (i = n - 2; i >= 0; i--)
         {
-            i--;
+            if (nums[i] < nums[i + 1])
+            {
+                break;
+            }
         }
 
-        // Step 2: find just greater element
+        // 🔹 Step 2: Find successor using for loop
         if (i >= 0)
         {
-            int j = n - 1;
-            while (arr[j] <= arr[i])
+            int j;
+            for (j = n - 1; j > i; j--)
             {
-                j--;
+                if (nums[j] > nums[i])
+                {
+                    break;
+                }
             }
-            swap(arr, i, j);
+            swap(nums, i, j);
         }
 
-        // Step 3: reverse the right part
-        reverse(arr, i + 1, n - 1);
+        // 🔹 Step 3: Reverse right part
+        reverse(nums, i + 1, n - 1);
     }
 
     private static void swap(int[] arr, int i, int j)

@@ -1,63 +1,32 @@
 package _01ARRAY_1D._17Sum;
 
-import java.util.*;
-
 public class _3Sum
 {
-    public static List<List<Integer>> threeSum(int[] nums)
+    public static boolean threeSum(int[] nums, int target)
     {
-        List<List<Integer>> ans = new ArrayList<>();
-
-        Arrays.sort(nums);
-        int n = nums.length;
-
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < nums.length - 2; i++)
         {
-            if (i > 0 && nums[i] == nums[i - 1])
+            for (int j = i + 1; j < nums.length - 1; j++)
             {
-                continue;
-            }
-
-            int j = i + 1;
-            int k = n - 1;
-
-            while (j < k)
-            {
-                int sum = nums[i] + nums[j] + nums[k];
-
-                if (sum < 0)
+                for (int k = j + 1; k < nums.length; k++)
                 {
-                    j++;
-                }
-                else if (sum > 0)
-                {
-                    k--;
-                }
-                else
-                {
-                    ans.add(Arrays.asList(nums[i], nums[j], nums[k]));
-
-                    j++;
-                    k--;
-
-                    while (j < k && nums[j] == nums[j - 1])
+                    if (nums[i] + nums[j] + nums[k] == target)
                     {
-                        j++;
+                        return true;
                     }
                 }
             }
         }
-
-        return ans;
+        return false;
     }
 
     public static void main(String[] args)
     {
-        int[] nums = { -1, 0, 1, 2, -1, -4 };
+        int[] nums = {2, 1, 6, 4, 3, 5};
+        int target = 9;
 
-        List<List<Integer>> result = threeSum(nums);
+        boolean ans = threeSum(nums, target);
 
-        System.out.println("Triplets with sum 0:");
-        System.out.println(result);
+        System.out.println(ans);
     }
 }
