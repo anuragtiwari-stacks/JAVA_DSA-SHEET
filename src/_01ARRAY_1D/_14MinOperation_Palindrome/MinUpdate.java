@@ -1,35 +1,44 @@
 package _01ARRAY_1D._14MinOperation_Palindrome;
 
+import java.util.*;
+
 public class MinUpdate
 {
-    static int MakingPalindrome(int[] arr)
+    public static int minMerge(ArrayList<Integer> list)
     {
-        int n = arr.length;  // Get length inside method
-        int count = 0;         // Count of merge operations
-        int i = 0, j = n - 1;
+        int start = 0;
+        int end = list.size() - 1;
+        int count = 0;
 
-        while (i < j)
+        while(start < end)
         {
-            if (arr[i] == arr[j])
+            if(list.get(start).equals(list.get(end)))
             {
-                i++;
-                j--;
+                start++;
+                end--;
             }
-            else if (arr[i] > arr[j])
+            else if(list.get(start) < list.get(end))
             {
-                arr[i] = arr[j];
-                i++;
-                j--;
+                // merge left
+                int sum = list.get(start) + list.get(start + 1);
+                list.set(start + 1, sum);
+                list.remove(start);
+
+                end--; // size kam hua
                 count++;
             }
-            else if (arr[i] < arr[j])
+            else
             {
-                arr[i] = arr[i] + arr[i+1];
-                i++;
-                j--;
+                // merge right
+                int sum = list.get(end) + list.get(end - 1);
+                list.set(end - 1, sum);
+                list.remove(end);
+
+                end--;
                 count++;
             }
         }
+
         return count;
     }
 
@@ -37,22 +46,14 @@ public class MinUpdate
     {
         int[] arr = {1, 4, 5, 9, 1};
 
-        System.out.print("Initial Array: ");
-        for(int i=0;i<arr.length;i++)
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int x : arr)
         {
-            System.out.print(arr[i] +" ");
+            list.add(x);
         }
 
-        int update = MakingPalindrome(arr);
+        int result = minMerge(list);
 
-        System.out.println();
-
-        System.out.println("Total updates: "+update);
-
-        System.out.print("Updated Array: ");
-        for(int i=0;i<arr.length;i++)
-        {
-            System.out.print(arr[i] +" ");
-        }
+        System.out.println("Minimum Merges: " + result);
     }
 }

@@ -16,27 +16,40 @@ package _01ARRAY_1D._20MO_Algorithm;
 
 public class RangeSumQueries
 {
-    public static int querySum(int[] arr, int L, int R)
-    {
-        int sum = 0;
-        for (int i = L; i <= R; i++)
-        {
-            sum = sum + arr[i];
-        }
-        return sum;
-    }
-
     public static void main(String[] args)
     {
         int[] arr = {1, 1, 2, 1, 3, 4, 5, 2, 8};
 
         int[][] queries = {{0, 4}, {1, 3}, {2, 4}};
 
+        int n = arr.length;
+
+        // 🔹 Step 1: build prefix sum
+        int[] prefix = new int[n];
+        prefix[0] = arr[0];
+
+        for (int i = 1; i < n; i++)
+        {
+            prefix[i] = prefix[i - 1] + arr[i];
+        }
+
+        // 🔹 Step 2: answer queries
         for (int i = 0; i < queries.length; i++)
         {
             int L = queries[i][0];
             int R = queries[i][1];
-            int result = querySum(arr, L, R);
+
+            int result;
+
+            if (L == 0)
+            {
+                result = prefix[R];
+            }
+            else
+            {
+                result = prefix[R] - prefix[L - 1];
+            }
+
             System.out.println("Sum of arr[] elements in range [" + L + ", " + R + "] is " + result);
         }
     }
