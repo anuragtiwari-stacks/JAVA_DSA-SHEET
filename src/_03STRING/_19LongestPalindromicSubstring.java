@@ -36,9 +36,12 @@ public class _19LongestPalindromicSubstring {
             {
                 String sub = s.substring(i, j);
 
-                if (isPalindrome(sub) && sub.length() > longest.length())
+                if (isPalindrome(sub))
                 {
-                    longest = sub;
+                    if(sub.length() > longest.length())
+                    {
+                        longest = sub;
+                    }
                 }
             }
         }

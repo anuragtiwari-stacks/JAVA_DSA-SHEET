@@ -15,18 +15,19 @@ public class _23CountBinarySubstrings
     {
         int result = 0;
 
-        int prevCount = 0;   // Previous group length
-        int currCount = 1;   // Current group length (at least 1)
+        int prevCount = 0;
+        int currCount = 1;
 
-        for (int i = 1; i < s.length(); i++)
+        for (int i = 0; i < s.length() - 1; i++)
         {
-            if (s.charAt(i) == s.charAt(i - 1))
+            if (s.charAt(i) == s.charAt(i + 1))
             {
                 currCount++;
             }
             else
             {
                 result = result + Math.min(prevCount, currCount);
+
                 prevCount = currCount;
                 currCount = 1;
             }

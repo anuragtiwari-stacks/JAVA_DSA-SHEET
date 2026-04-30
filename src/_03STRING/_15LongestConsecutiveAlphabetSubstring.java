@@ -4,23 +4,22 @@ public class _15LongestConsecutiveAlphabetSubstring
 {
     public static int longestConsecutiveSubstring(String s)
     {
+        if (s.length() == 0) return 0;
+
         int maxLen = 1;
         int currLen = 1;
 
-        for (int i = 1; i < s.length(); i++)
+        for (int i = 0; i < s.length() - 1; i++)
         {
-            // Check if current character is consecutive to previous
-            if (s.charAt(i) - s.charAt(i - 1) == 1)
+            // compare current with next
+            if (s.charAt(i + 1) - s.charAt(i) == 1)
             {
                 currLen++;
-                if (currLen > maxLen)
-                {
-                    maxLen = currLen;
-                }
+                maxLen = Math.max(maxLen, currLen);
             }
             else
             {
-                currLen = 1; // reset if not consecutive
+                currLen = 1;
             }
         }
 

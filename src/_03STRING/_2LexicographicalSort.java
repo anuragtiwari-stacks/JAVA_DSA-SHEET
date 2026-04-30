@@ -52,13 +52,13 @@ public class _2LexicographicalSort
 
         for (int i = 0; i < arr.length - 1; i++)
         {
-            for (int j = i + 1; j < arr.length; j++)
+            for (int j = 0; j < arr.length - i - 1; j++)
             {
-                if (arr[i].compareTo(arr[j]) > 0)
+                if (arr[j].compareTo(arr[j + 1]) > 0)
                 {
-                    String temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
+                    String temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                 }
             }
         }
