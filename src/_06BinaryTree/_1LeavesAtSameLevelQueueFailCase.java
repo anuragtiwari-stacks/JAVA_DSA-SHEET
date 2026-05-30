@@ -107,7 +107,7 @@ public class _1LeavesAtSameLevelQueueFailCase
 }
 
 /*
-==================== SIMPLE DRY RUN (TUMHARI LOGIC) ====================
+==================== SIMPLE DRY RUN ====================
 
 Tree:
         1
