@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class _4LRUCache
+public class _4LRUCache_Queue
 {
     /*
     LOGIC (Queue-based LRU):
@@ -39,7 +39,7 @@ public class _4LRUCache
     private Queue<Integer> queue;
     private HashMap<Integer, Integer> map;
 
-    public _4LRUCache(int capacity)
+    public _4LRUCache_Queue(int capacity)
     {
         this.capacity = capacity;
         queue = new LinkedList<>();
@@ -81,7 +81,7 @@ public class _4LRUCache
 
     public static void main(String[] args)
     {
-        _4LRUCache cache = new _4LRUCache(2);
+        _4LRUCache_Queue cache = new _4LRUCache_Queue(2);
 
         cache.put(1, 1);
         cache.put(2, 2);
