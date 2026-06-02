@@ -3,6 +3,7 @@ package _12Graph;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// 994. Rotting Oranges
 class _1RottingOranges
 {
     static class Pair
@@ -23,8 +24,11 @@ class _1RottingOranges
         int n = grid[0].length;
 
         Queue<Pair> q = new LinkedList<>();
+
         int freshCount = 0;
 
+        // Store all rotten oranges in queue
+        // Count fresh oranges
         for (int i = 0; i < m; i++)
         {
             for (int j = 0; j < n; j++)
@@ -40,6 +44,7 @@ class _1RottingOranges
             }
         }
 
+        // No fresh orange present
         if (freshCount == 0)
         {
             return 0;
@@ -47,67 +52,70 @@ class _1RottingOranges
 
         int minutes = 0;
 
+        // Multi Source BFS
         while (!q.isEmpty())
         {
             int size = q.size();
-            boolean rotted = false;
 
+            // Process one BFS level
             for (int i = 0; i < size; i++)
             {
                 Pair current = q.remove();
+
                 int row = current.row;
                 int col = current.col;
 
-                // Check Top
-                if (row > 0)
+                // Top
+                if (row > 0 && grid[row - 1][col] == 1)
                 {
-                    if (grid[row - 1][col] == 1)
-                    {
-                        grid[row - 1][col] = 2;
-                        q.add(new Pair(row - 1, col));
-                        freshCount--;
-                        rotted = true;
-                    }
+                    grid[row - 1][col] = 2;
+
+                    q.add(new Pair(row - 1, col));
+
+                    freshCount--;
                 }
 
-                // Check Bottom
-                if (row + 1 < m)
+                // Bottom
+                if (row + 1 < m && grid[row + 1][col] == 1)
                 {
-                    if (grid[row + 1][col] == 1)
-                    {
-                        grid[row + 1][col] = 2;
-                        q.add(new Pair(row + 1, col));
-                        freshCount--;
-                        rotted = true;
-                    }
+                    grid[row + 1][col] = 2;
+
+                    q.add(new Pair(row + 1, col));
+
+                    freshCount--;
                 }
 
-                // Check Left
-                if (col > 0)
+                // Left
+                if (col > 0 && grid[row][col - 1] == 1)
                 {
-                    if (grid[row][col - 1] == 1)
-                    {
-                        grid[row][col - 1] = 2;
-                        q.add(new Pair(row, col - 1));
-                        freshCount--;
-                        rotted = true;
-                    }
+                    grid[row][col - 1] = 2;
+
+                    q.add(new Pair(row, col - 1));
+
+                    freshCount--;
                 }
 
-                // Check Right
-                if (col + 1 < n)
+                // Right
+                if (col + 1 < n && grid[row][col + 1] == 1)
                 {
-                    if (grid[row][col + 1] == 1)
-                    {
-                        grid[row][col + 1] = 2;
-                        q.add(new Pair(row, col + 1));
-                        freshCount--;
-                        rotted = true;
-                    }
+                    grid[row][col + 1] = 2;
+
+                    q.add(new Pair(row, col + 1));
+
+                    freshCount--;
                 }
             }
 
-            if (rotted)
+            /*
+                Queue empty means:
+                no new rotten oranges available
+                for next minute.
+
+                Queue not empty means:
+                next BFS level exists,
+                so increase minutes.
+            */
+            if (!q.isEmpty())
             {
                 minutes++;
             }
@@ -131,6 +139,7 @@ class _1RottingOranges
                 };
 
         int result = orangesRotting(grid);
+
         System.out.println("Minimum minutes required: " + result);
     }
 }
