@@ -58,3 +58,38 @@ public class _5EarliestFinishTimeForLandAndWaterRides
         System.out.println("Example-2 Answer : " + ans2);
     }
 }
+
+/*OPTIMIED VERSION //Leetcode-3635. Earliest Finish Time for Land and Water Rides II
+class Solution
+{
+    public int earliestFinishTime(int[] landStartTime, int[] landDuration, int[] waterStartTime, int[] waterDuration)
+    {
+        int landmin=finishTime(landStartTime,landDuration,waterStartTime,waterDuration);
+        int watermin=finishTime(waterStartTime,waterDuration,landStartTime,landDuration);
+
+        return Math.min(landmin,watermin);
+    }
+
+    public static int finishTime(int[] start1, int[] duration1, int[] start2, int[] duration2)
+    {
+        int n = start1.length;
+        int m = start2.length;
+
+        int min1 = Integer.MAX_VALUE;
+        for(int i=0;i<n;i++)
+        {
+            min1 = Math.min(min1,start1[i]+duration1[i]);
+        }
+
+        int nextStart = Integer.MIN_VALUE;
+        int min2 = Integer.MAX_VALUE;
+        for(int i=0;i<m;i++)
+        {
+            nextStart = Math.max(min1,start2[i]);
+            min2 = Math.min(min2,nextStart+duration2[i]);
+        }
+
+        return min2;
+    }
+}
+*/
