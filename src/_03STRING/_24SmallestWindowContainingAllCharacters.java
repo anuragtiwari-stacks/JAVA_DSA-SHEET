@@ -1,111 +1,103 @@
 package _03STRING;
 
+// Leetcode - 76
+import java.util.HashMap;
+
 public class _24SmallestWindowContainingAllCharacters
 {
-    // Function to check if current window contains all characters of pattern
-    static boolean check(int[] c1, int[] c2)
+    public static String findSmallestWindow(String S, String P)
     {
-        for (int i = 0; i < 26; i++)
+        HashMap<Character, Integer> need = new HashMap<>();
+
+        for(int i = 0; i < P.length(); i++)
         {
-            if (c1[i] < c2[i])
+            char ch = P.charAt(i);
+
+            if(need.containsKey(ch))
+            {
+                need.put(ch, need.get(ch) + 1);
+            }
+            else
+            {
+                need.put(ch, 1);
+            }
+        }
+
+        HashMap<Character, Integer> window = new HashMap<>();
+
+        int left = 0;
+        int minLength = Integer.MAX_VALUE;
+        int startIndex = 0;
+
+        for(int right = 0; right < S.length(); right++)
+        {
+            char ch = S.charAt(right);
+
+            if(need.containsKey(ch))
+            {
+                if(window.containsKey(ch))
+                {
+                    window.put(ch, window.get(ch) + 1);
+                }
+                else
+                {
+                    window.put(ch, 1);
+                }
+            }
+
+            while(isValid(need, window))
+            {
+                int currentLength = right - left + 1;
+
+                if(currentLength < minLength)
+                {
+                    minLength = currentLength;
+                    startIndex = left;
+                }
+
+                char leftChar = S.charAt(left);
+
+                if(window.containsKey(leftChar))
+                {
+                    window.put(leftChar, window.get(leftChar) - 1);
+                }
+
+                left++;
+            }
+        }
+
+        if(minLength == Integer.MAX_VALUE)
+        {
+            return "-1";
+        }
+
+        return S.substring(startIndex, startIndex + minLength);
+    }
+
+    public static boolean isValid(HashMap<Character, Integer> need,
+                                  HashMap<Character, Integer> window)
+    {
+        for(char ch : need.keySet())
+        {
+            if(!window.containsKey(ch))
+            {
+                return false;
+            }
+
+            if(window.get(ch) < need.get(ch))
             {
                 return false;
             }
         }
+
         return true;
-    }
-
-    public static String findSmallestWindow(String S, String P)
-    {
-        int n = S.length();
-        int m = P.length();
-
-        // Frequency array for pattern P
-        int[] c2 = new int[26];
-
-        for (int i = 0; i < m; i++)
-        {
-            c2[P.charAt(i) - 'a']++;
-        }
-
-        int minLen = Integer.MAX_VALUE;
-        String ans = "";
-
-        // Try every starting index
-        for (int i = 0; i < n; i++)
-        {
-            int[] c1 = new int[26]; // frequency of current window
-
-            for (int j = i; j < n; j++)
-            {
-                c1[S.charAt(j) - 'a']++;
-
-                // If window contains all characters of P
-                if (check(c1, c2))
-                {
-                    int windowLen = j - i + 1;
-
-                    if (windowLen < minLen)
-                    {
-                        minLen = windowLen;
-                        ans = S.substring(i, j + 1);
-                    }
-
-                    break; // smallest window from this i found
-                }
-            }
-        }
-
-        return ans;
     }
 
     public static void main(String[] args)
     {
-        String S1 = "timetopractice";
-        String P1 = "toc";
+        String S = "ADOBECODEBANC";
+        String P = "ABC";
 
-        String S2 = "zoomlazapzo";
-        String P2 = "oza";
-
-        String S3 = "zoom";
-        String P3 = "zooe";
-
-        System.out.println(findSmallestWindow(S1, P1)); // toprac
-        System.out.println(findSmallestWindow(S2, P2)); // omla
-        System.out.println(findSmallestWindow(S3, P3)); // ""
+        System.out.println(findSmallestWindow(S, P));
     }
 }
-
-/*
--------------------- DRY RUN --------------------
-
-Input:
-S = "timetopractice"
-P = "toc"
-
-Step 1:
-Pattern frequency:
-t → 1
-o → 1
-c → 1
-
-Step 2:
-Start checking substrings
-
-i = 0 → "timetoprac"
-Contains t, o, c → valid
-minLen = 10
-ans = "timetoprac"
-
-i = 4 → "toprac"
-Contains t, o, c → valid
-minLen = 6
-ans = "toprac"
-
-No smaller valid window found
-
-Final Answer:
-"toprac"
-
------------------------------------------------
-*/
